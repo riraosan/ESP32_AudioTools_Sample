@@ -9,8 +9,7 @@
 using namespace audio_tools;
 
 constexpr char SPEAKER_NAME[] = "Soundcore 3";
-constexpr char FILE_01[]      = "/non4_44100_16_stereo.mp3";
-constexpr char FILE_02[]      = "/ohayo01mayu.mp3";
+constexpr char FILE_01[]      = "/non_BGM.mp3";
 
 A2DPStream _source = A2DPStream::instance();
 EncodedAudioStream _decoder(&_source, new MP3DecoderHelix());  // Decoding stream
@@ -19,10 +18,10 @@ File _audioFile;
 
 // Arduino Setup
 void setup(void) {
-  Serial.begin(115200);
-  AudioLogger::instance().begin(Serial, AudioLogger::Info);
+  //Serial.begin(115200);
+  //AudioLogger::instance().begin(Serial, AudioLogger::Info);
 
-  _source.setVolume(0.5);
+  _source.setVolume(7);
   _source.begin(TX_MODE, SPEAKER_NAME);
   log_i("A2DP is connected now...");
 
@@ -30,10 +29,10 @@ void setup(void) {
     log_e("SPIFFS Mount error.");
     return;
   } else {
-    log_i("SPIFFS mounted...");
+    log_i("SPIFFS Mounted...");
   }
 
-  _audioFile = SPIFFS.open(FILE_02);
+  _audioFile = SPIFFS.open(FILE_01);
   log_i("Open Audio File...");
 
   _decoder.setNotifyAudioChange(_source);
