@@ -1,6 +1,7 @@
 
 // Add this in your sketch or change the setting in AudioConfig.h
 #define USE_A2DP
+#define USE_HELIX
 
 #include <SPIFFS.h>
 #include "AudioTools.h"
@@ -21,7 +22,7 @@ void setup(void) {
   //Serial.begin(115200);
   //AudioLogger::instance().begin(Serial, AudioLogger::Info);
 
-  _source.setVolume(7);
+  _source.setVolume(1.0);
   _source.begin(TX_MODE, SPEAKER_NAME);
   log_i("A2DP is connected now...");
 
